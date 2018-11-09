@@ -1,29 +1,11 @@
 # gta-ynov-vue
 
-## Project setup
-```
-npm install
-```
+## Description
+L'objectif est de creer une application gestion des temps, activites pour une entreprise.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Gestion projet
+08-11-2018:
+(SOUHAITE)
+- Prendre du recul sur le projet et commencer à determiner les differents accès pour chaque profil (Salarie, responsable, DRH)
+- Conception de la page avec LOGIN et NAVBAR
+(REALISE)
