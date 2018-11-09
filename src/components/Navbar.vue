@@ -5,27 +5,28 @@
 
         <b-collapse is-nav id="nav_collapse">
             <b-navbar-nav class="ml-auto">
-                <b-nav-item-dropdown v-if="isNotConnected" class="rightItem" text="Gestion Compte" right>
-                    <b-dropdown-item v-if="isNotConnected" href="#">Ajouter salarié</b-dropdown-item>
-                    <b-dropdown-item v-if="isNotConnected" href="#">Fiche salarié</b-dropdown-item>
+                <b-nav-item-dropdown v-if="isSalarie" class="rightItem" text="Gestion Compte" right>
+                    <b-dropdown-item v-if="isResponsable" href="#">Ajouter salarié</b-dropdown-item>
+                    <b-dropdown-item v-if="isSalarie" href="#">Fiche salarié</b-dropdown-item>
                 </b-nav-item-dropdown>
-                <b-nav-item-dropdown v-if="isNotConnected" class="rightItem" text="Planning" right>
-                    <b-dropdown-item v-if="isNotConnected" href="#">Consultation planning</b-dropdown-item>
-                    <b-dropdown-item v-if="isNotConnected" href="#">Compteur d'heures</b-dropdown-item>
+                <b-nav-item-dropdown v-if="isSalarie" class="rightItem" text="Planning" right>
+                    <b-dropdown-item v-if="isSalarie" href="#">Consultation planning</b-dropdown-item>
+                    <b-dropdown-item v-if="isSalarie" href="#">Compteur d'heures</b-dropdown-item>
                 </b-nav-item-dropdown>
-                <b-nav-item-dropdown v-if="isNotConnected" class="rightItem" text="Tableau de bords" right>
-                    <b-dropdown-item v-if="isNotConnected" href="#">Contrats de travail</b-dropdown-item>
-                    <b-dropdown-item v-if="isNotConnected" href="#">Bilan d'annualisation</b-dropdown-item>
-                    <b-dropdown-item v-if="isNotConnected" href="#">Solde CP</b-dropdown-item>
+                <b-nav-item-dropdown v-if="isSalarie" class="rightItem" text="Tableau de bords" right>
+                    <b-dropdown-item v-if="isSalarie" href="#">Contrats de travail</b-dropdown-item>
+                    <b-dropdown-item v-if="isSalarie" href="#">Bilan d'annualisation</b-dropdown-item>
+                    <b-dropdown-item v-if="isSalarie" href="#">Solde CP</b-dropdown-item>
                 </b-nav-item-dropdown>
-                <b-nav-item-dropdown v-if="isNotConnected" class="rightItem" text="Demandes" right>
-                    <b-dropdown-item v-if="isNotConnected" href="#">Faire une demande</b-dropdown-item>
-                    <b-dropdown-item v-if="isNotConnected" href="#">Gérer les demandes</b-dropdown-item>
+                <b-nav-item-dropdown v-if="isSalarie" class="rightItem" text="Demandes" right>
+                    <b-dropdown-item v-if="isSalarie" href="#">Faire une demande</b-dropdown-item>
+                    <b-dropdown-item v-if="isResponsable" href="#">Gérer les demandes</b-dropdown-item>
                 </b-nav-item-dropdown>
-                <b-nav-item v-if="isNotConnected" class="rightItem">Logs</b-nav-item>
-                <b-nav-item v-if="isNotConnected" class="rightItem">Absence</b-nav-item>
+                <b-nav-item v-if="isDrh" class="rightItem">Logs</b-nav-item>
+                <b-nav-item v-if="isDrh" class="rightItem">Absence</b-nav-item>
             </b-navbar-nav>
-            <img v-if="isNotConnected" src="../assets/power.png" width=20 height=20 class="d-inline-block align-top" alt="BV">
+            <img v-if="isLogged" src="../assets/power.png" width=20 height=20 class="d-inline-block align-top" alt="BV"
+                 @click="logout">
         </b-collapse>
     </b-navbar>
 </template>
@@ -36,8 +37,39 @@ export default {
         return {
             email: "",
             password: "",
-            isNotConnected: false
+            user:null,
+            isResponsable:false,
+            isSalarie:true,
+            isDrh:false,
+            isLogged:false
         }
+    },
+    beforeCreate(){
+      setInterval(()=>{
+          this.updatLayoutDatas()
+      },100)
+    },
+    methods:{
+        updatLayoutDatas(){
+            this.isLogged = (localStorage.getItem('jwt')!=null)
+            this.user= JSON.parse(localStorage.getItem('user'))
+           // Recuperer le droit
+            if(this.user.role=="drh"){
+                this.isDrh=true
+            }else if(this.user.role=="salarie"){
+                this.isSalarie=true
+            }else{
+                this.isResponsable=true
+            }
+        },
+        logout: function(){
+            localStorage.removeItem('jwt')
+            localStorage.removeItem('user')
+            this.isLogged=false,
+            this.isResponsable=false,
+            this.isSalarie=true,
+            this.isDrh=false
+        },
     }
 }
 </script>

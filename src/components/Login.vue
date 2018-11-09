@@ -30,7 +30,7 @@ export default {
         return {
             email: "",
             password: "",
-
+            isNotConnected: localStorage.getItem('jwt')==null,
         }
     },
     methods: {
@@ -53,7 +53,6 @@ export default {
                             }
                             else {
                                 if(is_admin== "salarie"){
-                                    localStorage.setItem('isConnect',"1")
                                     this.isNotConnected = false;
                                     this.$router.push('admin')
                                 }
