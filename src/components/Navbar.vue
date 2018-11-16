@@ -11,7 +11,7 @@
                     <b-dropdown-item v-if="isResponsable">
                         <router-link class="routerLink" to="register">Ajouter salarié</router-link>
                     </b-dropdown-item>
-                    <b-dropdown-item v-if="isSalarie" @click="informations">
+                    <b-dropdown-item v-if="isSalarie">
                         <router-link class="routerLink" to="informations">Fiche salarié
                         </router-link>
                     </b-dropdown-item>
@@ -41,7 +41,7 @@
                     </b-dropdown-item>
                 </b-nav-item-dropdown>
                 <b-nav-item-dropdown v-if="isSalarie" class="rightItem" text="Demandes" right>
-                    <b-dropdown-item v-if="isSalarie" @click="demandes">
+                    <b-dropdown-item v-if="isSalarie">
                         <router-link class="routerLink" to="demandes">Faire une demande
                         </router-link>
                     </b-dropdown-item>

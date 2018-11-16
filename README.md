@@ -22,3 +22,9 @@ gta-ynov-vue: lancer la commande ---> npx vue-cli-service serve
 - Gérer l'affichage de la navbar en fonction des profils
 - Héberger le projet sur heroku
 - Commencer le routing
+- Trouver plugin pour ajouter un planning
+(REALISE)
+- Gérer l'affichage de la navbar en fonction des profils (OK)
+- Héberger le projet sur heroku (KO)
+- Commencer le routing (OK)
+- Trouver plugin pour ajouter un planning (KO)
