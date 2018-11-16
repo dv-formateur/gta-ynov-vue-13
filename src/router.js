@@ -1,11 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import UserBoard from '@/components/UserBoard'
-import Admin from '@/components/Admin'
+import Demandes from '@/components/Demandes'
+import Informations from '@/components/Informations'
+import Planning from '@/components/Planning'
+import CompteurHeures from '@/components/CompteurHeures'
+import Contrats from '@/components/Contrats'
+import Bilan from '@/components/Bilan'
+import Solde from '@/components/SoldeCP'
+import Manage from '@/components/ManageDemands'
+import Logs from '@/components/Logs'
+import Absences from '@/components/Absences'
 
 Vue.use(Router)
 
@@ -14,18 +22,11 @@ let router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+        meta: {
+            requiresAuth: true
+        }
     },
-    {
-      path: '/about',
-      name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    },
-      {
-          path: '/',
-          name: 'HelloWorld',
-          component: HelloWorld
-      },
       {
           path: '/login',
           name: 'login',
@@ -39,7 +40,7 @@ let router = new Router({
           name: 'register',
           component: Register,
           meta: {
-              guest: true
+              requiresAuth: true
           }
       },
       {
@@ -51,14 +52,85 @@ let router = new Router({
           }
       },
       {
-          path: '/admin',
-          name: 'admin',
-          component: Admin,
+          path: '/demandes',
+          name: 'demandes',
+          component: Demandes,
           meta: {
-              requiresAuth: true,
-              is_admin : true
+              requiresAuth: true
           }
       },
+      {
+          path: '/informations',
+          name: 'informations',
+          component: Informations,
+          meta: {
+              requiresAuth: true
+          }
+      },
+      {
+          path: '/planning',
+          name: 'planning',
+          component: Planning,
+          meta: {
+              requiresAuth: true
+          }
+      },
+      {
+          path: '/compteur',
+          name: 'compteur',
+          component: CompteurHeures,
+          meta: {
+              requiresAuth: true
+          }
+      },
+      {
+          path: '/contrats',
+          name: 'contrats',
+          component: Contrats,
+          meta: {
+              requiresAuth: true
+          }
+      },
+      {
+          path: '/bilan',
+          name: 'bilan',
+          component: Bilan,
+          meta: {
+              requiresAuth: true
+          }
+      },
+      {
+          path: '/solde',
+          name: 'solde',
+          component: Solde,
+          meta: {
+              requiresAuth: true
+          }
+      },
+      {
+          path: '/manage',
+          name: 'manage',
+          component: Manage,
+          meta: {
+              requiresAuth: true
+          }
+      },
+      {
+          path: '/logs',
+          name: 'logs',
+          component: Logs,
+          meta: {
+              requiresAuth: true
+          }
+      },
+      {
+          path: '/absences',
+          name: 'absences',
+          component: Absences,
+          meta: {
+              requiresAuth: true
+          }
+      }
   ]
 })
 router.beforeEach((to, from, next) => {

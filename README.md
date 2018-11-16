@@ -3,6 +3,11 @@
 ## Description
 L'objectif est de creer une application gestion des temps, activites pour une entreprise.
 
+
+## Lancement du projet (en local)
+gta_api :lancer la commande ---> node index.js
+gta-ynov-vue: lancer la commande ---> npx vue-cli-service serve
+
 ## Gestion projet
 08-11-2018:
 (SOUHAITE)
@@ -11,3 +16,9 @@ L'objectif est de creer une application gestion des temps, activites pour une en
 (REALISE)
 - Recul
 - LOGIN & Connexion avec la navbar
+
+16-11-2018:
+(SOUHAITE)
+- Gérer l'affichage de la navbar en fonction des profils
+- Héberger le projet sur heroku
+- Commencer le routing

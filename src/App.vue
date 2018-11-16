@@ -1,17 +1,11 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <navbar></navbar>
-      <connection></connection>
-      <!--<router-link to="/">Home</router-link> |-->
-      <!--<router-link to="/about">About</router-link>-->
-    </div>
-    <!--<router-view/>-->
+    <navbar></navbar>
+    <router-view/>
   </div>
 </template>
 <script>
     import navbar from './components/Navbar'
-    import connection from './components/Login'
     import 'bootstrap/dist/css/bootstrap.css'
     import 'bootstrap-vue/dist/bootstrap-vue.css'
 
@@ -26,8 +20,7 @@
             }
         },
         components: {
-            navbar,
-            connection
+            navbar
         }
     }
 </script>

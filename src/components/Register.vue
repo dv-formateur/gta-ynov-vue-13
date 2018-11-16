@@ -1,41 +1,52 @@
 <template>
-    <div>
-        <h4>Register</h4>
-        <form>
-            <label for="name">Name</label>
-            <div>
-                <input id="name" type="text" v-model="name" required autofocus>
-            </div>
-
-            <label for="email" >E-Mail Address</label>
-            <div>
-                <input id="email" type="email" v-model="email" required>
-            </div>
-
-            <label for="password">Password</label>
-            <div>
-                <input id="password" type="password" v-model="password" required>
-            </div>
-
-            <label for="password-confirm">Confirm Password</label>
-            <div>
-                <input id="password-confirm" type="password" v-model="password_confirmation" required>
-            </div>
-
-            <label for="password-confirm">Is this an administrator account?</label>
-            <div>
-                <select v-model="is_admin">
-                    <option value=1>Yes</option>
-                    <option value=0>No</option>
+    <div class="col-md-6 container">
+        <h1>Register</h1>
+        <b-form class="justify-content-center">
+            <b-form-group label="Name"
+                          label-for="name">
+                <b-form-input id="name"
+                              type="text"
+                              v-model="name"
+                              required
+                              placeholder="Jean Dupont">
+                </b-form-input>
+            </b-form-group>
+            <b-form-group label="Email"
+                          label-for="email">
+                <b-form-input id="email"
+                              type="email"
+                              v-model="email"
+                              required
+                              placeholder="jeandupont@exemple.fr">
+                </b-form-input>
+            </b-form-group>
+            <b-form-group label="Password"
+                          label-for="password">
+                <b-form-input id="password"
+                              type="password"
+                              v-model="password"
+                              required>
+                </b-form-input>
+            </b-form-group>
+            <b-form-group label="Confirm Password"
+                          label-for="password-confirm">
+                <b-form-input id="password-confirm"
+                              type="password"
+                              v-model="password_confirmation"
+                              required>
+                </b-form-input>
+            </b-form-group>
+            <b-form-group label="Role"
+                          label-for="admin_account">
+                <select class="custom-select my-1 mr-sm-2" id="admin_account" v-model="role">
+                    <option value="salarie">salarie</option>
+                    <option value="resp">resp</option>
                 </select>
-            </div>
-
-            <div>
-                <button type="submit" @click="handleSubmit">
-                    Register
-                </button>
-            </div>
-        </form>
+            </b-form-group>
+            <b-button id="submitRegisterButton" @click="handleSubmit" type="submit" variant="primary">
+                Register
+            </b-button>
+        </b-form>
     </div>
 </template>
 <script>
@@ -47,7 +58,7 @@ export default {
             email : "",
             password : "",
             password_confirmation : "",
-            is_admin : null
+            role : ""
         }
     },
     methods : {
@@ -57,12 +68,11 @@ export default {
             if (this.password === this.password_confirmation && this.password.length > 0)
             {
                 let url = "http://localhost:3000/register"
-                if(this.is_admin != null || this.is_admin == 1) url = "http://localhost:3000/register-admin"
                 this.$http.post(url, {
                     name: this.name,
                     email: this.email,
                     password: this.password,
-                    is_admin: this.is_admin
+                    role: this.role
                 })
                     .then(response => {
                         localStorage.setItem('user',JSON.stringify(response.data.user))
@@ -74,7 +84,8 @@ export default {
                                 this.$router.push(this.$route.params.nextUrl)
                             }
                             else{
-                                this.$router.push('/')
+                                this.$router.push('/userboard')
+                                return alert("User successfully created")
                             }
                         }
                     })
@@ -83,7 +94,7 @@ export default {
                     });
             } else {
                 this.password = ""
-                this.passwordConfirm = ""
+                this.password_confirmation = ""
 
                 return alert("Passwords do not match")
             }
