@@ -28,3 +28,8 @@ gta-ynov-vue: lancer la commande ---> npx vue-cli-service serve
 - Héberger le projet sur heroku (KO)
 - Commencer le routing (OK)
 - Trouver plugin pour ajouter un planning (KO)
+
+17-11-2018
+(SOUHAITE)
+- Héberger le projet sur heroku
+- Trouver plugin pour ajouter un planning

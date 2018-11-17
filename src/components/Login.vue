@@ -1,5 +1,5 @@
 <template>
-    <div class="container" v-if="isNotConnected">
+    <div class="col-md-4 container" v-if="isNotConnected">
         <h1>Connection</h1>
         <b-form class="justify-content-center">
             <b-form-group label="Username/email"

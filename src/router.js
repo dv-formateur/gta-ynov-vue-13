@@ -14,6 +14,7 @@ import Solde from '@/components/SoldeCP'
 import Manage from '@/components/ManageDemands'
 import Logs from '@/components/Logs'
 import Absences from '@/components/Absences'
+import Team from '@/components/Team'
 
 Vue.use(Router)
 
@@ -127,6 +128,14 @@ let router = new Router({
           path: '/absences',
           name: 'absences',
           component: Absences,
+          meta: {
+              requiresAuth: true
+          }
+      },
+      {
+          path: '/team',
+          name: 'team',
+          component: Team,
           meta: {
               requiresAuth: true
           }

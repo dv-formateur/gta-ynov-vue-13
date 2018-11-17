@@ -9,6 +9,9 @@
             <b-navbar-nav v-if="isLogged" class="ml-auto">
                 <b-nav-item-dropdown v-if="isSalarie" class="rightItem" text="Gestion Compte" right>
                     <b-dropdown-item v-if="isResponsable">
+                        <router-link class="routerLink" to="team">Gérer mon équipe</router-link>
+                    </b-dropdown-item>
+                    <b-dropdown-item v-if="isResponsable">
                         <router-link class="routerLink" to="register">Ajouter salarié</router-link>
                     </b-dropdown-item>
                     <b-dropdown-item v-if="isSalarie">
