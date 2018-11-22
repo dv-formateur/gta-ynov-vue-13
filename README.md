@@ -1,4 +1,4 @@
-# gta-ynov-vue
+﻿# gta-ynov-vue
 
 ## Description
 L'objectif est de creer une application gestion des temps, activites pour une entreprise.
@@ -12,9 +12,9 @@ gta-ynov-vue: lancer la commande ---> npx vue-cli-service serve
 lien api -> https://apigtaproject.herokuapp.com/
 lien plateforme -> https://gta-ynov-vue-rsc.herokuapp.com/#/login
 
-compte salarie -> USER/salarie@hotmail.fr MDP/secret
-compte responsable -> RESP/responsable@hotmail.fr MDP/secret
-compte drh -> USER/masaintmartin@wanadoo.fr MDP/P@sswrd
+compte salarie -> USER/rudy.schoepfer@hotmail.fr MDP/P@ssw0rd
+compte responsable -> RESP/mael.maillard@hotmail.fr MDP/P@ssw0rd
+compte drh -> USER/masaintmartin@wanadoo.fr MDP/P@ssw0rd
 
 ## Gestion projet
 08-11-2018:
@@ -40,4 +40,11 @@ compte drh -> USER/masaintmartin@wanadoo.fr MDP/P@sswrd
 17-11-2018
 (SOUHAITE)
 - Héberger le projet sur heroku
-- Trouver plugin pour ajouter un planning (https://github.com/GeoffZhu/vue-event-calendar)
+- Trouver plugin pour ajouter un planning
+(REALISE)
+- Héberger le projet sur heroku (OK)
+- Trouver plugin pour ajouter un planning (OK -> https://github.com/GeoffZhu/vue-event-calendar)
+
+22-11-2018
+(SOUHAITE)
+- Terminer la partie gestion de planning
