@@ -45,10 +45,9 @@
         methods: {
             getAllAbsences(){
                 this.absences=[];
-                // let url = "https://apigtaproject.herokuapp.com/absences"
-                let url = "http://localhost:3000/absences"
+                let url = "https://apigtaproject.herokuapp.com/absences"
+                // let url = "http://localhost:3000/absences"
                 this.$http.get(url,{
-                    // this.$http.get('"https://apigtaproject.herokuapp.com/absences', {
                 }).then(response => {
                     response.data.absence.forEach((abs) => {
                         let absence= {};
@@ -59,8 +58,8 @@
                 });
             },
             getAllType(){
-                // let url = "https://apigtaproject.herokuapp.com/absences"
-                let url = "http://localhost:3000/types"
+                let url = "https://apigtaproject.herokuapp.com/types"
+                // let url = "http://localhost:3000/types"
                 this.$http.get(url,{
                 }).then(response => {
                     response.data.type.forEach((typ) => {
@@ -72,7 +71,6 @@
                 });
             },
             addAbsence(){
-                // let url = "https://apigtaproject.herokuapp.com/absences"
                 this.types.forEach((type) =>{
                   if(type.libelle === this.libelletype) {
                       this.idType=type.id;

@@ -40,8 +40,8 @@
         methods: {
             getAllEvents(callback){
                 this.events=[];
-                this.$http.get('http://localhost:3000/events', {
-                    // this.$http.get('https://apigtaproject.herokuapp.com/events', {
+                // this.$http.get('http://localhost:3000/events', {
+                    this.$http.get('https://apigtaproject.herokuapp.com/events', {
                 }).then(response => {
                     response.data.events.forEach((evt) => {
                         this.events.push(evt);
