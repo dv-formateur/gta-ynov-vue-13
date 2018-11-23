@@ -12,11 +12,14 @@
     "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.11",
     "express": "^4.16.4",
+    "luxon": "^1.7.1",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.17",
+    "vue-datetime": "^1.0.0-beta.8",
     "vue-event-calendar": "^1.5.2",
     "vue-fullcalendar": "^1.0.9",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "weekstart": "^1.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.1.1",

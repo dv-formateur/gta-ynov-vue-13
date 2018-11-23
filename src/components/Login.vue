@@ -37,8 +37,8 @@ export default {
         handleSubmit(e) {
             e.preventDefault()
             if (this.password.length > 0) {
-                // this.$http.post('http://localhost:3000/login', {
-                    this.$http.post('https://apigtaproject.herokuapp.com/login', {
+                this.$http.post('http://localhost:3000/login', {
+                    // this.$http.post('https://apigtaproject.herokuapp.com/login', {
                     email: this.email,
                     password: this.password
                 })
@@ -68,6 +68,7 @@ export default {
             }
 
         }
+
     }
 }
 </script>

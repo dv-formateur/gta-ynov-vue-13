@@ -47,4 +47,6 @@ compte drh -> USER/masaintmartin@wanadoo.fr MDP/P@ssw0rd
 
 22-11-2018
 (SOUHAITE)
-- Terminer la partie gestion de planning
+- Modifier la base de données pour gèrer les évènements
+- Modification call api pour réceptionner les évènements
+- Ergonomie et fonctionnement de la partie planning
