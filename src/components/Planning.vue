@@ -32,7 +32,8 @@
             </div>
         </div>
         <div v-if="enabled">
-            <calendar :calendars="calendarList"
+            <calendar ref="calendar"
+                        :calendars="calendarList"
                       :schedules="scheduleList"
                       :view="view"
                       :taskView="taskView"
