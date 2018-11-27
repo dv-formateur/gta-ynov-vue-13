@@ -7,9 +7,10 @@ import Axios from 'axios'
 import Datetime from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
 import 'tui-calendar/dist/tui-calendar.min.css'
-import Switches from 'vue-switches';
 import 'tui-calendar/dist/tui-calendar.css'
 import { Calendar } from '@toast-ui/vue-calendar'
+
+import Switches from 'vue-switches';
 
 Vue.prototype.$http = Axios;
 Vue.config.productionTip = false;
