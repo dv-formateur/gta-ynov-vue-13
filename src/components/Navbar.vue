@@ -69,50 +69,59 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            email: "",
-            password: "",
-            user:null,
-            isResponsable:false,
-            isSalarie:true,
-            isDrh:false,
-            isLogged:false
-        }
-    },
-    beforeCreate(){
-      setInterval(()=>{
-          this.updatLayoutDatas()
-      },100)
-    },
-    methods:{
-        updatLayoutDatas(){
-            this.isLogged = (localStorage.getItem('jwt')!=null)
-            this.user= JSON.parse(localStorage.getItem('user'))
-           // Recuperer le droit
-            if(this.user.role=="drh"){
-                this.isDrh=true
-                this.isSalarie=true
-                this.isResponsable=true
-            }else if(this.user.role=="salarie"){
-                this.isSalarie=true
-            }else{
-                this.isResponsable=true
-                this.isSalarie=true
+    export default {
+        data() {
+            return {
+                email: "",
+                password: "",
+                user: {},
+                isResponsable:false,
+                isSalarie:true,
+                isDrh:false,
+                isLogged:false
             }
         },
-        logout: function(){
-            localStorage.removeItem('jwt')
-            localStorage.removeItem('user')
-            this.isLogged=false
-            this.isResponsable=false
-            this.isSalarie=true
-            this.isDrh=false
-            this.$router.push('/')
+        beforeCreate(){
+            setInterval(()=>{
+                this.updatLayoutDatas()
+            },100)
+        },
+        methods:{
+            updatLayoutDatas(){
+                this.user=JSON.parse(localStorage.getItem('user'));
+                this.isLogged = (localStorage.getItem('jwt')!=null);
+                if(this.isLogged){
+                    // Recuperer le droit
+                    if(this.user.role=="drh"){
+                        this.isDrh=true;
+                        this.isSalarie=true;
+                        this.isResponsable=true
+                    }else if(this.user.role=="salarie"){
+                        this.isSalarie=true
+                    }else if(this.user.role=="resp"){
+                        this.isResponsable=true;
+                        this.isSalarie=true;
+                    }else{
+                        console.log("Aucun compte activé")
+                    }
+                }
+            },
+            logout: function(){
+                localStorage.removeItem('jwt')
+                localStorage.removeItem('user')
+                this.isLogged=false
+                this.isResponsable=false
+                this.isSalarie=true
+                this.isDrh=false
+                this.$router.push('/')
+            },
+        },
+        beforeMount(){
+            this.updatLayoutDatas()
+            // console.log(this.tea m);
         }
+
     }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

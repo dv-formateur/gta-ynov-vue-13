@@ -5,9 +5,11 @@
         <form class="col-md-12">
             <div class="form-inline form-group">
                 <label for="debut">Date de début</label>
-                <input v-model="debut" class="form-control" type="date" id="debut">
+                <!--<input v-model="debut" class="form-control" type="date" id="debut">-->
+                <datetime id="debut" v-model="debut" type="datetime"></datetime>
                 <label for="fin" class="col-form-label">Date de fin</label>
-                <input v-model="fin" class="form-control" type="date" id="fin">
+                <!--<input v-model="fin" class="form-control" type="date" id="fin">-->
+                <datetime id="fin" v-model="fin" type="datetime"></datetime>
                 <label for="typeabsence" class="col-form-label">Motif</label>
                 <select v-model="abs" class="form-control" id="typeabsence">
                     <option v-for="absence in absences" >{{absence.libelle}}</option>
@@ -37,8 +39,8 @@
         },
         methods: {
             getAllAbsences(){
-                let url = "https://apigtaproject.herokuapp.com/absences"
-                // let url = "http://localhost:3000/absences";
+                // let url = "https://apigtaproject.herokuapp.com/absences"
+                let url = "http://localhost:3000/absences";
                 this.$http.get(url, {
                 }).then(response => {
                     response.data.absence.forEach((abs) => {
@@ -56,11 +58,20 @@
                     }
                 });
                 this.user= JSON.parse(localStorage.getItem('user'));
-                let url = "https://apigtaproject.herokuapp.com/events"
-                // let url = "http://localhost:3000/events"
+                // let url = "https://apigtaproject.herokuapp.com/events"
+                let url = "http://localhost:3000/events";
                 this.$http.post(url, {
                     event: {debut:this.debut,fin:this.fin,absence_id:this.idAbs,user_id:this.user.id,commentaire:this.comments}
                 });
+                this.clear();
+
+            },
+            clear(){
+                this.debut="";
+                this.fin="";
+                this.comments="";
+                this.abs="";
+
             }
         },
         beforeMount(){

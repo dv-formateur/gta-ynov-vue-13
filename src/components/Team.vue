@@ -5,18 +5,28 @@
     </div>
 </template>
 <script>
-    const items = [
-        { id: 1, Nom: 'Schoepfer Rudy', Email: 'rschoepfer@test.fr', role: 'salarie' },
-        { id: 2, Nom: 'Rolland Maxime', Email: 'rmaxime@test.fr', role: 'salarie' },
-        { id: 3, Nom: 'Courant Maxime', Email: 'cmaxime@test.fr', role: 'salarie' },
-        { id: 4, Nom: 'Saint Martin Matthieu', Email: 'smmatthieu@test.fr', role: 'salarie' }
-    ]
     export default {
-
-        data () {
+        data(){
             return {
-                items
+                user:{},
+                items:JSON.parse(localStorage.getItem('team'))
             }
+        },
+        methods : {
+            getMyTeams(){
+                this.user=JSON.parse(localStorage.getItem('user'));
+                // let url = "https://apigtaproject.herokuapp.com/team/this.user.id";
+                let url = "http://localhost:3000/team/"+this.user.id;
+                localStorage.removeItem('team');
+                this.$http.get(url,{
+                }).then(response => {
+                    this.team=response.data.team;
+                    localStorage.setItem('team',JSON.stringify(this.team));
+                });
+            },
+        },
+        beforeMount(){
+            this.getMyTeams();
         }
     }
 </script>

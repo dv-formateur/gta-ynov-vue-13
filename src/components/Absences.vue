@@ -11,7 +11,7 @@
                           placeholder="Congés payés">
             </b-form-input>
             <select v-model="libelletype" class="form-control" id="typeabsence">
-                <option v-for="type in types" >{{type.libelle}}</option>
+                <option v-for="type in types" >{{type.intitule}}</option>
             </select>
             <b-button id="submitButton" @click="addAbsence" type="submit" variant="primary">Ajouter absence</b-button>
         </b-form>
@@ -45,8 +45,8 @@
         methods: {
             getAllAbsences(){
                 this.absences=[];
-                let url = "https://apigtaproject.herokuapp.com/absences"
-                // let url = "http://localhost:3000/absences"
+                // let url = "https://apigtaproject.herokuapp.com/absences";
+                let url = "http://localhost:3000/absences";
                 this.$http.get(url,{
                 }).then(response => {
                     response.data.absence.forEach((abs) => {
@@ -58,15 +58,16 @@
                 });
             },
             getAllType(){
-                let url = "https://apigtaproject.herokuapp.com/types"
-                // let url = "http://localhost:3000/types"
+                // let url = "https://apigtaproject.herokuapp.com/types";
+                let url = "http://localhost:3000/types";
                 this.$http.get(url,{
                 }).then(response => {
                     response.data.type.forEach((typ) => {
                         let type= {};
                         type.id=typ.id;
-                        type.libelle=typ.libelle;
+                        type.intitule=typ.intitule;
                         this.types.push(type);
+                        console.log(this.types);
                     });
                 });
             },
@@ -76,6 +77,7 @@
                       this.idType=type.id;
                   }
                 });
+                // let url = "https://apigtaproject.herokuapp.com/absences";
                 let url = "http://localhost:3000/absences";
                 this.$http.post(url, {
                     absence: {libelle:this.inputAbsence,type_id:this.idType}
@@ -87,6 +89,7 @@
         beforeMount(){
             this.getAllAbsences();
             this.getAllType();
+            console.log(this.types);
         }
     }
 </script>

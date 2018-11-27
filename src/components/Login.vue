@@ -25,52 +25,45 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            email: "",
-            password: "",
-            isNotConnected: localStorage.getItem('jwt')==null,
-        }
-    },
-    methods: {
-        handleSubmit(e) {
-            e.preventDefault()
-            if (this.password.length > 0) {
-                // this.$http.post('http://localhost:3000/login', {
-                    this.$http.post('https://apigtaproject.herokuapp.com/login', {
-                    email: this.email,
-                    password: this.password
-                })
-                    .then(response => {
-                        let is_admin = response.data.user.role
-                        localStorage.setItem('user',JSON.stringify(response.data.user));
-                        localStorage.setItem('jwt',response.data.token);
-
-                        if (localStorage.getItem('jwt') != null){
-                            this.$emit('loggedIn');
-                            if(this.$route.params.nextUrl != null){
-                                this.$router.push(this.$route.params.nextUrl)
-                            }
-                            else {
-                                if(is_admin== "salarie"){
-                                    this.isNotConnected = false;
-                                    this.$router.push('admin')
-                                }
-                                else if(is_admin == "drh"){
-                                    this.$router.push('dashboard')
-                                }else{
-                                    this.$router.push('admin')
-                                }
-                            }
-                        }
-                    })
+    export default {
+        data() {
+            return {
+                email: "",
+                password: "",
+                user:"",
+                team:[],
+                isNotConnected: localStorage.getItem('jwt')==null
             }
+        },
+        methods: {
+            handleSubmit(e) {
+                e.preventDefault();
+                if (this.password.length > 0) {
+                    this.$http.post('http://localhost:3000/login', {
+                        //     this.$http.post('https://apigtaproject.herokuapp.com/login', {
+                        email: this.email,
+                        password: this.password
+                    })
+                        .then(response => {
+                            this.user=response.data.user;
+                            localStorage.setItem('user',JSON.stringify(response.data.user));
+                            localStorage.setItem('jwt',response.data.token);
 
-        }
-
+                            if (localStorage.getItem('jwt') != null){
+                                this.$emit('loggedIn');
+                                if(this.$route.params.nextUrl != null){
+                                    this.$router.push(this.$route.params.nextUrl)
+                                }
+                                else {
+                                    this.isNotConnected = false;
+                                    this.$router.push('informations')
+                                }
+                            }
+                        })
+                }
+            },
+        },
     }
-}
 </script>
 <style scoped>
     h1 {
