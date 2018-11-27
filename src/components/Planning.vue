@@ -129,8 +129,8 @@
             getAllEvents(callback){
                 this.events=[];
                 this.scheduleList=[];
-                this.$http.get('http://localhost:3000/events/validate', {
-                // this.$http.get('https://apigtaproject.herokuapp.com/events/validate', {
+                // this.$http.get('http://localhost:3000/events/validate', {
+                this.$http.get('https://apigtaproject.herokuapp.com/events/validate', {
                 }).then(response => {
                     this.events=response.data.events;
                     response.data.events.forEach((evt)=>{

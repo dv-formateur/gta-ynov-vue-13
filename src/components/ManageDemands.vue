@@ -40,8 +40,8 @@
         methods : {
             getAllDemandsFilterByManagerId(){
                 this.user=JSON.parse(localStorage.getItem('user'));
-                // let url = "https://apigtaproject.herokuapp.com/events/"+this.user.id+"/inprogress";
-                let url = "http://localhost:3000/events/"+this.user.id+"/inprogress"
+                let url = "https://apigtaproject.herokuapp.com/events/"+this.user.id+"/inprogress";
+                // let url = "http://localhost:3000/events/"+this.user.id+"/inprogress"
                 this.$http.get(url, {
                 }).then(response => {
                     this.demandes=response.data.events;
@@ -49,16 +49,16 @@
                 });
             },
             validateDemand(id){
-                // let url = "https://apigtaproject.herokuapp.com/events/"+id+"/validate";
-                let url = "http://localhost:3000/events/"+id+"/validate"
+                let url = "https://apigtaproject.herokuapp.com/events/"+id+"/validate";
+                // let url = "http://localhost:3000/events/"+id+"/validate"
                 this.$http.put(url, {
                 }).then(response => {
                     this.getAllDemandsFilterByManagerId();
                 });
             },
             refusedDemand(id){
-                // let url = "https://apigtaproject.herokuapp.com/events/"+id+"/refused";
-                let url = "http://localhost:3000/events/"+id+"/refused"
+                let url = "https://apigtaproject.herokuapp.com/events/"+id+"/refused";
+                // let url = "http://localhost:3000/events/"+id+"/refused"
                 this.$http.put(url, {
                 }).then(response => {
                     this.getAllDemandsFilterByManagerId();

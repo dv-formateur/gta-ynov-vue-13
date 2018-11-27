@@ -81,8 +81,8 @@
                             this.manager_id=user.id;
                         }
                     });
-                // let url = "https://apigtaproject.herokuapp.com/register";
-                let url = "http://localhost:3000/register";
+                let url = "https://apigtaproject.herokuapp.com/register";
+                // let url = "http://localhost:3000/register";
                 this.$http.post(url, {
                     name: this.name,
                     email: this.email,
@@ -117,8 +117,8 @@
     },
     getAllSalarie(){
         this.users=[];
-        this.$http.get('http://localhost:3000/user', {
-            // this.$http.get('https://apigtaproject.herokuapp.com/user', {
+        // this.$http.get('http://localhost:3000/user', {
+            this.$http.get('https://apigtaproject.herokuapp.com/user', {
         }).then(response => {
             response.data.users.forEach((user) => {
                 this.users.push(user);

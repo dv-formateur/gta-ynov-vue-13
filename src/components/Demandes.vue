@@ -39,8 +39,8 @@
         },
         methods: {
             getAllAbsences(){
-                // let url = "https://apigtaproject.herokuapp.com/absences"
-                let url = "http://localhost:3000/absences";
+                let url = "https://apigtaproject.herokuapp.com/absences"
+                // let url = "http://localhost:3000/absences";
                 this.$http.get(url, {
                 }).then(response => {
                     response.data.absence.forEach((abs) => {
@@ -58,8 +58,8 @@
                     }
                 });
                 this.user= JSON.parse(localStorage.getItem('user'));
-                // let url = "https://apigtaproject.herokuapp.com/events"
-                let url = "http://localhost:3000/events";
+                let url = "https://apigtaproject.herokuapp.com/events"
+                // let url = "http://localhost:3000/events";
                 this.$http.post(url, {
                     event: {debut:this.debut,fin:this.fin,absence_id:this.idAbs,user_id:this.user.id,commentaire:this.comments}
                 });

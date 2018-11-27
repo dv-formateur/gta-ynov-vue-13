@@ -15,8 +15,8 @@
         methods : {
             getMyTeams(){
                 this.user=JSON.parse(localStorage.getItem('user'));
-                // let url = "https://apigtaproject.herokuapp.com/team/this.user.id";
-                let url = "http://localhost:3000/team/"+this.user.id;
+                let url = "https://apigtaproject.herokuapp.com/team/this.user.id";
+                // let url = "http://localhost:3000/team/"+this.user.id;
                 localStorage.removeItem('team');
                 this.$http.get(url,{
                 }).then(response => {
