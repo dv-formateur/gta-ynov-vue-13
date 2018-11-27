@@ -135,9 +135,16 @@
                 }).then(response => {
                     this.events=response.data.events;
                     response.data.events.forEach((evt)=>{
-                        this.scheduleList.push({id:evt.this,calendarId:evt.id,title:evt.name,category:'time',
-                            dueDateClass:'',start:evt.debut,end:evt.fin,bgColor:"#87d6ee"})
-                    })
+                        let scheduleColor="";
+                        if(evt.intitule_type==="Absence"){
+                            scheduleColor="#ff7f50";
+                        }else if(evt.intitule_type==="Horaire"){
+                            scheduleColor="#A2DF35";
+                        }
+
+                        this.scheduleList.push({id:evt.this,calendarId:evt.id,title:evt.intitule_type+" - "+evt.name,category:'time',
+                            dueDateClass:'',start:evt.debut,end:evt.fin,bgColor:scheduleColor})
+                    });
                     if(callback){
                         callback()
                     }
@@ -183,12 +190,10 @@
     }
     button{
         margin-left:30px;
+        margin-bottom:10px;
     }
-    .card{
-        margin-top:25px;
-    }
-    form{
-        margin-top:35px;
+    .card {
+        margin-top: 25px;
     }
     img{
         margin-left:10px;
