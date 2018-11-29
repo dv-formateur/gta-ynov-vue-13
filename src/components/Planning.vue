@@ -32,6 +32,23 @@
             </div>
         </div>
         <div v-if="enabled">
+            <div class="row">
+                <div class="col-md-2"  @click="backCalendar">
+                    <svg id="i-chevron-left" viewBox="0 0 32 32" width="15" height="15" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                        <path d="M20 30 L8 16 20 2" />
+                    </svg>
+                </div>
+                <div class="col-md-8">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" @click="viewCalendarWeek">Semaine</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" @click="viewCalendarDay">Jour</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" @click="viewCalendarMonth">Mois</button>
+                </div>
+                <div class="col-md-2" @click="nextCalendar">
+                    <svg id="i-chevron-right" viewBox="0 0 32 32" width="15" height="15" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                        <path d="M12 30 L24 16 15 2" />
+                    </svg>
+                </div>
+            </div>
             <calendar ref="calendar"
                         :calendars="calendarList"
                       :schedules="scheduleList"
@@ -56,6 +73,7 @@
         data () {
             return {
                 // Calendar variable
+                actualMonth:"",
                 view: 'month',
                 taskView: false,
                 scheduleView: ['allday'],
@@ -169,8 +187,31 @@
                     }
                 });
             },
+            obtainMonth(){
+                let allMonthInString=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre",
+                "Octobre","Novembre","Décembre"];
+                this.actualMonth=allMonthInString[new Date().getMonth()];
+            },
+            nextCalendar () {
+                this.$refs.calendar.invoke('next');
+                this.nameMonth=this.$refs.calendar.invoke('getDateRangeStart').toUTCString()
+            },
+            backCalendar () {
+                this.$refs.calendar.invoke('prev');
+                this.nameMonth=this.$refs.calendar.invoke('getDateRangeStart').toUTCString()
+            },
+            viewCalendarDay () {
+                this.$refs.calendar.invoke('changeView', 'day', 'true')
+            },
+            viewCalendarWeek () {
+                this.$refs.calendar.invoke('changeView', 'week', 'true')
+            },
+            viewCalendarMonth () {
+                this.$refs.calendar.invoke('changeView', 'month', 'true')
+            }
         },
         beforeMount(){
+            this.obtainMonth();
             this.getAllEvents();
         },
     }
